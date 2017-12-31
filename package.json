@@ -1,0 +1,10 @@
+{
+  "name": "jsx-dom-render",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/oychao/jsx-dom-render.git",
+  "author": "Ouyang Chao <chao@ouyang.io>",
+  "license": "WTFPL",
+  "scripts": {},
+  "devDependencies": {}
+}
