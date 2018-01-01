@@ -22,10 +22,10 @@ Currently creating inline style with JavaScript Object is **NOT** supported.
 import React from 'jsx-dom-render';
 const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
-let node;
-document.body.appendChild(
+let btn;
+app.appendChild(
     <div>
-        <h1 title="hello">hello {h1Content}</h1>
+        <h1 title="hello world">hello {h1Content}</h1>
         <hr/>
         <ol>
             {list.map(function(item) {
@@ -33,9 +33,10 @@ document.body.appendChild(
             })}
         </ol>
         <hr/>
-        <button onclick={e => alert('haha')}>Click me!</button>
+        <button ref={_ => void (btn = _)} onClick={e => void (alert('haha'))}></button>
     </div>
 );
+btn.textContent = 'Click me';
 ```
 
 ## License
