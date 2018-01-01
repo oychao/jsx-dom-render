@@ -6,5 +6,10 @@
   "author": "Ouyang Chao <chao@ouyang.io>",
   "license": "WTFPL",
   "scripts": {},
-  "devDependencies": {}
+  "devDependencies": {},
+  "keywords": [
+    "dom",
+    "jsx",
+    "render"
+  ]
 }
