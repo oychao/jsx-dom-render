@@ -16,9 +16,10 @@
         const h1Content = 'world';
         const list = ['Zhao', 'Qian', 'Sun', 'Li'];
         let node;
+        let btn;
         app.appendChild(
             <div>
-                <h1 title="hello" asdf="hehe">hello {h1Content}</h1>
+                <h1 title="hello world">hello {h1Content}</h1>
                 <hr/>
                 <ol>
                     {list.map(function(item) {
@@ -26,9 +27,10 @@
                     })}
                 </ol>
                 <hr/>
-                <button onClick={e => alert('haha')}>Click me!</button>
+                <button ref={_ => void (btn = _)} onClick={e => void (alert('haha'))}></button>
             </div>
         );
+        btn.textContent = 'Click me';
     </script>
 </body>
 

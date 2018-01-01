@@ -7,7 +7,7 @@
             Object.entries(props).forEach(function (entry) {
                 entry[0] = entry[0].toLowerCase();
                 if (entry[0] === 'ref') {
-                    entry[1]();
+                    entry[1](ele);
                     return;
                 }
                 if (entry[0] === 'classname') {
