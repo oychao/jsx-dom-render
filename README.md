@@ -17,6 +17,7 @@ jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates 
 Add dependencies:
 
 ```bash
+yarn add jsx-dom-render
 yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env babel-loader@8.0.0-beta.0 webpack
 ```
 

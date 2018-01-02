@@ -70,18 +70,18 @@
 "use strict";
 
 
-var _index = _interopRequireDefault(__webpack_require__(1));
+var _jsxDomRender = _interopRequireDefault(__webpack_require__(1));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var h1Content = 'world';
 var list = ['Zhao', 'Qian', 'Sun', 'Li'];
 var btn;
-document.body.appendChild(_index.default.createElement("div", null, _index.default.createElement("h1", {
+document.body.appendChild(_jsxDomRender.default.createElement("div", null, _jsxDomRender.default.createElement("h1", {
   title: "hello world"
-}, "hello ", h1Content), _index.default.createElement("hr", null), _index.default.createElement("ol", null, list.map(function (item) {
-  return _index.default.createElement("li", null, item);
-})), _index.default.createElement("hr", null), _index.default.createElement("button", {
+}, "hello ", h1Content), _jsxDomRender.default.createElement("hr", null), _jsxDomRender.default.createElement("ol", null, list.map(function (item) {
+  return _jsxDomRender.default.createElement("li", null, item);
+})), _jsxDomRender.default.createElement("hr", null), _jsxDomRender.default.createElement("button", {
   ref: function ref(_) {
     return void (btn = _);
   },
@@ -96,54 +96,43 @@ btn.textContent = 'Click me';
 /***/ (function(module, exports) {
 
 const convertToTextNodeIfStr = node => typeof node === 'string' ? document.createTextNode(node) : node;
-
 const createElement = function (tag, props) {
-  const ele = document.createElement(tag);
-  const children = Array.from(arguments).slice(2);
-
-  if (props) {
-    Object.entries(props).forEach(function (entry) {
-      entry[0] = entry[0].toLowerCase();
-
-      if (entry[0] === 'ref') {
-        entry[1](ele);
-        return;
-      }
-
-      if (entry[0] === 'classname') {
-        entry[0] = 'class';
-      }
-
-      if (entry[0] in ele) {
-        if (entry[0].slice(0, 2) === 'on') {
-          ele.addEventListener(entry[0].slice(2), entry[1]);
-          return;
-        }
-
-        ele.setAttribute(entry[0], entry[1]);
-      }
-    });
-  }
-
-  if (children) {
-    if (children.length === 1 && Array.isArray(children[0])) {
-      children.pop().forEach(function (child) {
-        children.push(convertToTextNodeIfStr(child));
-      });
+    const ele = document.createElement(tag);
+    const children = Array.from(arguments).slice(2);
+    if (props) {
+        Object.entries(props).forEach(function (entry) {
+            entry[0] = entry[0].toLowerCase();
+            if (entry[0] === 'ref') {
+                entry[1](ele);
+                return;
+            }
+            if (entry[0] === 'classname') {
+                entry[0] = 'class';
+            }
+            if (entry[0] in ele) {
+                if (entry[0].slice(0, 2) === 'on') {
+                    ele.addEventListener(entry[0].slice(2), entry[1]);
+                    return;
+                }
+                ele.setAttribute(entry[0], entry[1]);
+            }
+        });
     }
-
-    children.forEach(function (child) {
-      ele.appendChild(convertToTextNodeIfStr(child));
-    });
-  }
-
-  return ele;
+    if (children) {
+        if (children.length === 1 && Array.isArray(children[0])) {
+            children.pop().forEach(function (child) {
+                children.push(convertToTextNodeIfStr(child));
+            });
+        }
+        children.forEach(function (child) {
+            ele.appendChild(convertToTextNodeIfStr(child));
+        });
+    }
+    return ele;
 };
-
-React = {
-  createElement
-};
+React = { createElement };
 module.exports = React;
+
 
 /***/ })
 /******/ ]);

@@ -1,4 +1,4 @@
-import React from '../index';
+import React from 'jsx-dom-render';
 
 const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
