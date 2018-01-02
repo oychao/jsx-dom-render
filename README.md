@@ -14,7 +14,7 @@ jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates 
 
 ## How to use
 
-Add compile packages:
+Add dependencies:
 
 ```bash
 yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env babel-loader@8.0.0-beta.0 webpack
@@ -93,7 +93,7 @@ Then build:
 yarn build
 ```
 
-Check index.html and that's it! Completed demo is available in [demo][2].
+Import the `bundle.js` in `index.html` and that's it! Completed demo is available in [demo][2].
 
 NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
 
