@@ -14,9 +14,48 @@ jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates 
 
 ## How to use
 
-Just like normal JSX, but instead of using `className` and `onClick` (etc.), use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
+Add compile packages:
 
-Currently creating inline style with JavaScript Object is **NOT** supported.
+```bash
+yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env babel-loader@8.0.0-beta.0 webpack
+```
+
+Configure `.babelrc` and `webpack.config.babel.js` (or `webpack.config.js`):
+
+```json
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        "@babel/plugin-transform-react-jsx"
+    ]
+}
+```
+
+```js
+import path from 'path';
+
+module.exports = {
+    entry: './index.js',
+    output: {
+        path: path.resolve('dist'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['.js', '.json', '.jsx']
+    },
+    module: {
+        rules: [{
+            test: /\.(js|jsx)$/,
+            exclude: /node_modules/,
+            use: ['babel-loader']
+        }]
+    }
+};
+```
+
+Use jsx syntax:
 
 ```jsx
 import React from 'jsx-dom-render';
@@ -40,8 +79,29 @@ document.body.appendChild(
 btn.textContent = 'Click me';
 ```
 
+Then build:
+
+```package.json
+  ...
+  "scripts": {
+    "build": "webpack"
+  },
+  ...
+```
+
+```bash
+yarn build
+```
+
+Check index.html and that's it! Completed demo is available in [demo][2].
+
+NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
+
+Currently creating inline style with JavaScript Object is **NOT** supported.
+
 ## License
 
 [![](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/)
 
 [1]: https://github.com/oychao/jsx-dom-render/blob/master/index.js
+[2]: https://github.com/oychao/jsx-dom-render/tree/master/demo
