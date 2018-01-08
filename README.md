@@ -6,15 +6,15 @@ Render JSX to DOM Object.
 
 Sometimes you may need to create some DOM objects, but writing a lot of document.createElement() is unmaintainable.
 
-So jsx-dom-render is a good choice.
-
 ## How it Works
 
-jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates DOM objects instead of React Elements. ([check the source code][1])
+jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates DOM objects instead of React Elements. (check the [source code][1])
 
 ## How to use
 
-Add dependencies:
+Check the [demo][2].
+
+Add dependencies.
 
 ```bash
 yarn add jsx-dom-render
@@ -94,7 +94,7 @@ Then build:
 yarn build
 ```
 
-Import the `bundle.js` in `index.html` and that's it! Completed demo is available in [demo][2].
+Import the `bundle.js` in `index.html` and that's it!
 
 NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
 
