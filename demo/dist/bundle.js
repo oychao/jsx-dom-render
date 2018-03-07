@@ -79,7 +79,8 @@ var h1Content = 'world';
 var list = ['Zhao', 'Qian', 'Sun', 'Li'];
 var btn;
 document.body.appendChild(_index.default.createElement("div", {
-  "class": "cls1 cls2"
+  "class": "cls1 cls2",
+  "data-foo": "foo"
 }, _index.default.createElement("h1", {
   title: "hello world"
 }, "hello ", h1Content), _index.default.createElement("hr", null), _index.default.createElement("ol", null, list.map(function (item) {
@@ -119,6 +120,8 @@ const createElement = function (tag, props) {
 
       if (entry[0] === 'class') {
         entry[1].split(' ').forEach(cls => ele.classList.add(cls));
+      } else if (entry[0].slice(0, 5) === 'data-') {
+        ele.setAttribute(entry[0], entry[1]);
       } else if (entry[0] in ele) {
         if (entry[0].slice(0, 2) === 'on') {
           ele.addEventListener(entry[0].slice(2), entry[1]);
