@@ -7,7 +7,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "jsx-dom-render": "^1.0.0"
+    "jsx-dom-render": "oychao/jsx-dom-render"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.40",
