@@ -18,7 +18,7 @@ Add dependencies.
 
 ```bash
 yarn add jsx-dom-render
-yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env babel-loader@8.0.0-beta.0 webpack
+yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env @babel/register babel-loader@8.0.0-beta.2 webpack
 ```
 
 Configure `.babelrc` and `webpack.config.babel.js` (or `webpack.config.js`):
@@ -65,7 +65,7 @@ const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
 let btn;
 document.body.appendChild(
-    <div>
+    <div class="cls1 cls2" data-foo="foo">
         <h1 title="hello world">hello {h1Content}</h1>
         <hr />
         <ol>
@@ -74,7 +74,7 @@ document.body.appendChild(
             })}
         </ol>
         <hr />
-        <button ref={_ => void (btn = _)} onClick={e => void (alert('haha'))}></button>
+        <button ref={_ => void (btn = _)} onClick={e => void (alert('from jsx'))}></button>
     </div>
 );
 btn.textContent = 'Click me';

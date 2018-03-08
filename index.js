@@ -12,7 +12,11 @@ const createElement = function (tag, props) {
             if (entry[0] === 'classname') {
                 entry[0] = 'class';
             }
-            if (entry[0] in ele) {
+            if (entry[0] === 'class') {
+                entry[1].split(' ').forEach(cls => ele.classList.add(cls));
+            } else if (entry[0].slice(0, 5) === 'data-') {
+                ele.setAttribute(entry[0], entry[1]);
+            } else if (entry[0] in ele) {
                 if (entry[0].slice(0, 2) === 'on') {
                     ele.addEventListener(entry[0].slice(2), entry[1]);
                     return;
