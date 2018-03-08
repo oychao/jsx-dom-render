@@ -5,7 +5,7 @@ const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
 let btn;
 document.body.appendChild(
-    <div class="cls1 cls2">
+    <div class="cls1 cls2" data-foo="foo">
         <h1 title="hello world">hello {h1Content}</h1>
         <hr />
         <ol>
