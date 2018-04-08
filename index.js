@@ -1,4 +1,5 @@
 const convertToTextNodeIfStr = node => typeof node === 'string' ? document.createTextNode(node) : node;
+
 const createElement = function (tag, props) {
     const ele = document.createElement(tag);
     const children = Array.from(arguments).slice(2);
@@ -37,5 +38,5 @@ const createElement = function (tag, props) {
     }
     return ele;
 };
-React = { createElement };
-module.exports = React;
+
+module.exports = { createElement };
