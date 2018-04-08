@@ -2,6 +2,8 @@
 
 Render JSX to DOM Object.
 
+[![Build Status](https://travis-ci.org/oychao/jsx-dom-render.svg?branch=master)](https://travis-ci.org/oychao/jsx-dom-render)
+
 ## Why jsx-dom-render
 
 Sometimes you may need to create some DOM objects, but writing a lot of document.createElement() is unmaintainable.
