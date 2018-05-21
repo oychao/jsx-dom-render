@@ -3,6 +3,9 @@ const convertToTextNodeIfStr = node => typeof node === 'string' ? document.creat
 const createElement = function (tag, props) {
     const ele = document.createElement(tag);
     const children = Array.from(arguments).slice(2);
+    if(!tag) {
+        return children;
+    }
     if (props) {
         Object.entries(props).forEach(function (entry) {
             entry[0] = entry[0].toLowerCase();
