@@ -7,14 +7,15 @@
     "build": "webpack"
   },
   "dependencies": {
-    "jsx-dom-render": "oychao/jsx-dom-render"
+    "jsx-dom-render": "file:../"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/register": "^7.0.0-beta.40",
-    "babel-loader": "8.0.0-beta.2",
-    "webpack": "^3.11.0"
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/register": "^7.0.0-beta.47",
+    "babel-loader": "8.0.0-beta.3",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
   }
 }

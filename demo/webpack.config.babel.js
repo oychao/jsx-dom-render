@@ -1,6 +1,7 @@
 import path from 'path';
 
 module.exports = {
+    mode: 'development',
     entry: './index.js',
     output: {
         path: path.resolve('dist'),
