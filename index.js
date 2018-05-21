@@ -1,7 +1,11 @@
 const convertToTextNodeIfStr = node => typeof node === 'string' ? document.createTextNode(node) : node;
+
 const createElement = function (tag, props) {
     const ele = document.createElement(tag);
     const children = Array.from(arguments).slice(2);
+    if(!tag) {
+        return children;
+    }
     if (props) {
         Object.entries(props).forEach(function (entry) {
             entry[0] = entry[0].toLowerCase();
@@ -37,5 +41,5 @@ const createElement = function (tag, props) {
     }
     return ele;
 };
-React = { createElement };
-module.exports = React;
+
+module.exports = { createElement };
