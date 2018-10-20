@@ -1,14 +1,14 @@
-const convertToTextNodeIfStr = node =>
+const convertToTextNodeIfStr = (node: string | object): any =>
   typeof node === 'string' ? document.createTextNode(node) : node;
 
-const createElement = function(tag, props) {
+const createElement = function(tag: string, props: object) {
   const ele = document.createElement(tag);
   const children = Array.from(arguments).slice(2);
   if (!tag) {
     return children;
   }
   if (props) {
-    Object.entries(props).forEach(function(entry) {
+    Object.entries(props).forEach(function(entry: Array<any>) {
       entry[0] = entry[0].toLowerCase();
       if (entry[0] === 'ref') {
         entry[1](ele);
@@ -18,7 +18,7 @@ const createElement = function(tag, props) {
         entry[0] = 'class';
       }
       if (entry[0] === 'class') {
-        entry[1].split(' ').forEach(cls => ele.classList.add(cls));
+        entry[1].split(' ').forEach((cls: string) => ele.classList.add(cls));
       } else if (entry[0].slice(0, 5) === 'data-') {
         ele.setAttribute(entry[0], entry[1]);
       } else if (entry[0] in ele) {
@@ -32,11 +32,11 @@ const createElement = function(tag, props) {
   }
   if (children) {
     if (children.length === 1 && Array.isArray(children[0])) {
-      children.pop().forEach(function(child) {
+      children.pop().forEach(function(child: string | object) {
         children.push(convertToTextNodeIfStr(child));
       });
     }
-    children.forEach(function(child) {
+    children.forEach(function(child: string | object) {
       ele.appendChild(convertToTextNodeIfStr(child));
     });
   }
