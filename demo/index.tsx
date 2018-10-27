@@ -1,10 +1,10 @@
-// import React from 'jsx-dom-render';
+import React from 'jsx-dom-render';
 // const React = require('../bin');
-import React from '../bin/index';
+// import React from '../bin/index';
 
-const h1Content = 'world';
-const list = ['Zhao', 'Qian', 'Sun', 'Li'];
-let btn;
+const h1Content: string = 'world';
+const list: Array<string> = ['Zhao', 'Qian', 'Sun', 'Li'];
+let btn: HTMLElement;
 document.body.appendChild(
   (
     <>
@@ -19,10 +19,11 @@ document.body.appendChild(
         <hr />
         <button
           ref={(_: HTMLElement): void => void (btn = _)}
-          onClick={(e: Event): void => void alert('from jsx')}
+          onClick={(e: Event): void => void alert('from tsx')}
         />
       </div>
     </>
   )[0]
 );
+
 btn.textContent = 'Click me';
