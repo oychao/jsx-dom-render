@@ -1,19 +1,18 @@
-import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
 
 export default {
-  input: './index.js',
+  input: './src/index.ts',
   output: [
     {
-      file: 'bin/bundle.js',
-      format: 'umd',
-      name: 'React'
+      file: 'bin/index.js',
+      format: 'cjs'
     }
   ],
   plugins: [
-    babel({
-      exclude: 'node_modules/**',
-      externalHelpers: true,
-      plugins: ['@babel/external-helpers']
+    typescript({
+      tsconfigOverride: {
+        compilerOptions: { declaration: true }
+      }
     })
   ],
   external: ['fs', 'path', 'jsonfile']
