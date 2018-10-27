@@ -1,5 +1,6 @@
-import React from 'jsx-dom-render';
-// import React from '../index';
+// import React from 'jsx-dom-render';
+// const React = require('../bin');
+import React from '../bin/index';
 
 const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
@@ -17,8 +18,8 @@ document.body.appendChild(
         </ol>
         <hr />
         <button
-          ref={_ => void (btn = _)}
-          onClick={e => void alert('from jsx')}
+          ref={(_: HTMLElement): void => void (btn = _)}
+          onClick={(e: Event): void => void alert('from jsx')}
         />
       </div>
     </>

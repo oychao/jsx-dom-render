@@ -1,8 +1,11 @@
 const convertToTextNodeIfStr = (node: string | object): any =>
   typeof node === 'string' ? document.createTextNode(node) : node;
 
-const createElement = function(tag: string, props: object) {
-  const ele = document.createElement(tag);
+const createElement = function(
+  tag: string,
+  props: object
+): HTMLElement | Array<any> {
+  const ele: HTMLElement = document.createElement(tag);
   const children = Array.from(arguments).slice(2);
   if (!tag) {
     return children;
