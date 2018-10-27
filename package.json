@@ -1,13 +1,13 @@
 {
   "name": "jsx-dom-render",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "./bin/index.js",
   "typings": "./bin/index.d.ts",
   "author": {
     "name": "ouyang-chao",
     "email": "chao@ouyang.io"
   },
-  "license": "MIT",
+  "license": "WTFPL",
   "repository": "https://github.com/oychao/jsx-dom-render",
   "keywords": [],
   "description": "Render JSX to DOM tree",
