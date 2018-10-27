@@ -27,12 +27,8 @@ Configure `.babelrc` and `webpack.config.babel.js` (or `webpack.config.js`):
 
 ```json
 {
-    "presets": [
-        "@babel/preset-env"
-    ],
-    "plugins": [
-        "@babel/plugin-transform-react-jsx"
-    ]
+  "presets": ["@babel/preset-env"],
+  "plugins": ["@babel/plugin-transform-react-jsx"]
 }
 ```
 
@@ -40,21 +36,23 @@ Configure `.babelrc` and `webpack.config.babel.js` (or `webpack.config.js`):
 import path from 'path';
 
 module.exports = {
-    entry: './index.js',
-    output: {
-        path: path.resolve('dist'),
-        filename: 'bundle.js'
-    },
-    resolve: {
-        extensions: ['.js', '.json', '.jsx']
-    },
-    module: {
-        rules: [{
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        }]
-    }
+  entry: './index.js',
+  output: {
+    path: path.resolve('dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.jsx']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
+  }
 };
 ```
 
@@ -67,17 +65,17 @@ const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
 let btn;
 document.body.appendChild(
-    <div class="cls1 cls2" data-foo="foo">
-        <h1 title="hello world">hello {h1Content}</h1>
-        <hr />
-        <ol>
-            {list.map(function (item) {
-                return <li>{item}</li>
-            })}
-        </ol>
-        <hr />
-        <button ref={_ => void (btn = _)} onClick={e => void (alert('from jsx'))}></button>
-    </div>
+  <div class="cls1 cls2" data-foo="foo">
+    <h1 title="hello world">hello {h1Content}</h1>
+    <hr />
+    <ol>
+      {list.map(function(item) {
+        return <li>{item}</li>;
+      })}
+    </ol>
+    <hr />
+    <button ref={_ => void (btn = _)} onClick={e => void alert('from jsx')} />
+  </div>
 );
 btn.textContent = 'Click me';
 ```
