@@ -1,6 +1,6 @@
-import React from 'jsx-dom-render';
+// import React from 'jsx-dom-render';
 // const React = require('../bin');
-// import React from '../bin/index';
+import React from '../bin/index';
 
 const h1Content: string = 'world';
 const list: Array<string> = ['Zhao', 'Qian', 'Sun', 'Li'];
@@ -8,7 +8,7 @@ let btn: HTMLElement;
 document.body.appendChild(
   (
     <>
-      <div class="cls1 cls2" data-foo="foo">
+      <div class="cls1 cls2" data-foo="foo" style={{ color: 'red' }}>
         <h1 title="hello world">hello {h1Content}</h1>
         <hr />
         <ol>
