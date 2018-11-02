@@ -40,8 +40,6 @@ It also support Typescript(check the [demo][2]).
 
 NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
 
-Currently creating inline style with JavaScript Object is **NOT** supported.
-
 ## License
 
 [![](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/)
