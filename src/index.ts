@@ -24,6 +24,11 @@ const createElement = function(
         entry[1].split(' ').forEach((cls: string) => ele.classList.add(cls));
       } else if (entry[0].slice(0, 5) === 'data-') {
         ele.setAttribute(entry[0], entry[1]);
+      } else if (entry[0] === 'style') {
+        if (typeof entry[1] !== 'object') {
+          throw new TypeError('style attribute should be an object');
+        }
+        Object.keys(entry[1]).forEach((k: any) => (ele.style[k] = entry[1][k]));
       } else if (entry[0] in ele) {
         if (entry[0].slice(0, 2) === 'on') {
           ele.addEventListener(entry[0].slice(2), entry[1]);
