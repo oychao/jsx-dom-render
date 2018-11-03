@@ -38,7 +38,11 @@ btn.textContent = 'Click me';
 
 It also support Typescript(check the [demo][2]).
 
-NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
+### NOTE
+
+Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
+
+Also, since there is no Virtual DOM and [Reconciliation][3] in jsx-dom-render, property [key][4] is unnecessary when creating lists.
 
 ## License
 
@@ -46,3 +50,5 @@ NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to
 
 [1]: https://github.com/oychao/jsx-dom-render/blob/master/src/index.ts
 [2]: https://github.com/oychao/jsx-dom-render/tree/master/demo
+[3]: https://reactjs.org/docs/reconciliation.html
+[4]: https://reactjs.org/docs/reconciliation.html#keys
