@@ -21,16 +21,24 @@ const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
 let btn;
 document.body.appendChild(
-  <div class="cls1 cls2" data-foo="foo">
+  <div class="cls1 cls2" data-foo="foo" style={{ color: 'red' }}>
     <h1 title="hello world">hello {h1Content}</h1>
+    <div>{'<h4>JSX Prevents Injection Attacks</h4>'}</div>
+    <div dangerouslySetInnerHTML="<h4>but you can use dangerouslySetInnerHTML</h4>" />
+    <div
+      dangerouslySetInnerHTML={() => '<h4>inner HTML from function</h4>'}
+    />
     <hr />
     <ol>
-      {list.map(function(item) {
-        return <li>{item}</li>;
+      {list.map(function(item, idx) {
+        return <li data-index={idx}>{item}</li>;
       })}
     </ol>
     <hr />
-    <button ref={_ => void (btn = _)} onClick={e => void alert('from jsx')} />
+    <button
+      ref={(_: HTMLElement): void => void (btn = _)}
+      onClick={(e: Event): void => void alert('from tsx')}
+    />
   </div>
 );
 btn.textContent = 'Click me';
@@ -40,7 +48,7 @@ It also support Typescript(check the [demo][2]).
 
 ### NOTE
 
-Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
+Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners, property names are insensitive, both `onclick` and `onClick` are valid.
 
 Also, since there is no Virtual DOM and [Reconciliation][3] in jsx-dom-render, property [key][4] is unnecessary when creating lists.
 
