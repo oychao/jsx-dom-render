@@ -10,10 +10,15 @@ document.body.appendChild(
     <>
       <div class="cls1 cls2" data-foo="foo" style={{ color: 'red' }}>
         <h1 title="hello world">hello {h1Content}</h1>
+        <div>{'<h4>JSX Prevents Injection Attacks</h4>'}</div>
+        <div dangerouslySetInnerHTML="<h4>but you can use dangerouslySetInnerHTML</h4>" />
+        <div
+          dangerouslySetInnerHTML={() => '<h4>inner HTML from function</h4>'}
+        />
         <hr />
         <ol>
-          {list.map(function(item) {
-            return <li>{item}</li>;
+          {list.map(function(item, idx) {
+            return <li data-index={idx}>{item}</li>;
           })}
         </ol>
         <hr />
