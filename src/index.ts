@@ -3,33 +3,49 @@ const convertToTextNodeIfStr = (node: string | object): any =>
 
 const createElement = function(
   tag: string,
-  props: object
+  props: object,
+  ...children: Array<any>
 ): HTMLElement | Array<any> {
   const ele: HTMLElement = document.createElement(tag);
-  const children = Array.from(arguments).slice(2);
   if (!tag) {
     return children;
   }
   if (props) {
-    Object.entries(props).forEach(function(entry: Array<any>) {
-      entry[0] = entry[0].toLowerCase();
-      if (entry[0] === 'ref') {
-        entry[1](ele);
+    Object.entries(props).forEach(function([propKey, propValue]: Array<any>) {
+      propKey = propKey.toLowerCase();
+      if ('ref' === propKey) {
+        if ('function' !== typeof propValue) {
+          throw new TypeError('value of property \'ref\' must be a function');
+        }
+        propValue.call(undefined, ele);
         return;
       }
-      if (entry[0] === 'classname') {
-        entry[0] = 'class';
+      if ('classname' === propKey) {
+        propKey = 'class';
       }
-      if (entry[0] === 'class') {
-        entry[1].split(' ').forEach((cls: string) => ele.classList.add(cls));
-      } else if (entry[0].slice(0, 5) === 'data-') {
-        ele.setAttribute(entry[0], entry[1]);
-      } else if (entry[0] in ele) {
-        if (entry[0].slice(0, 2) === 'on') {
-          ele.addEventListener(entry[0].slice(2), entry[1]);
+      if ('class' === propKey) {
+        propValue.split(' ').forEach((cls: string) => ele.classList.add(cls));
+      } else if ('style' === propKey) {
+        if (typeof propValue !== 'object') {
+          throw new TypeError('style attribute should be an object');
+        }
+        Object.keys(propValue).forEach((k: any) => (ele.style[k] = propValue[k]));
+      } else if ('dangerouslysetinnerhtml' === propKey) {
+        let htmlStr: string;
+        if(typeof propValue === 'function') {
+          htmlStr = propValue.call();
+        } else {
+          htmlStr = propValue;
+        }
+        ele.innerHTML = htmlStr;
+      } else if (propKey in ele) {
+        if (propKey.slice(0, 2) === 'on') {
+          ele.addEventListener(propKey.slice(2), propValue);
           return;
         }
-        ele.setAttribute(entry[0], entry[1]);
+        ele.setAttribute(propKey, propValue);
+      } else if ('data-' === propKey.slice(0, 5)) {
+        ele.setAttribute(propKey, propValue);
       }
     });
   }

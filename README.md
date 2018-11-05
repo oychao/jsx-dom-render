@@ -1,6 +1,6 @@
 # jsx-dom-render
 
-Render JSX to DOM Object.
+Render JSX to DOM Tree.
 
 [![Build Status](https://travis-ci.org/oychao/jsx-dom-render.svg?branch=master)](https://travis-ci.org/oychao/jsx-dom-render)
 
@@ -10,53 +10,9 @@ Sometimes you may need to create some DOM objects, but writing a lot of document
 
 ## How it Works
 
-jsx-dom-render is a simple lib which hijacked `React.createElement`, it creates DOM objects instead of React Elements. (check the [source code][1])
+jsx-dom-render is a simple lib which pretend to be `React.createElement`, it creates DOM objects instead of React Elements. (check the [source code][1])
 
 ## How to use
-
-Check the [demo][2].
-
-Add dependencies.
-
-```bash
-yarn add jsx-dom-render
-yarn add -D @babel/core @babel/plugin-transform-react-jsx @babel/preset-env @babel/register babel-loader@8.0.0-beta.2 webpack
-```
-
-Configure `.babelrc` and `webpack.config.babel.js` (or `webpack.config.js`):
-
-```json
-{
-  "presets": ["@babel/preset-env"],
-  "plugins": ["@babel/plugin-transform-react-jsx"]
-}
-```
-
-```js
-import path from 'path';
-
-module.exports = {
-  entry: './index.js',
-  output: {
-    path: path.resolve('dist'),
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: ['.js', '.json', '.jsx']
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      }
-    ]
-  }
-};
-```
-
-Use jsx syntax:
 
 ```jsx
 import React from 'jsx-dom-render';
@@ -65,44 +21,42 @@ const h1Content = 'world';
 const list = ['Zhao', 'Qian', 'Sun', 'Li'];
 let btn;
 document.body.appendChild(
-  <div class="cls1 cls2" data-foo="foo">
+  <div class="cls1 cls2" data-foo="foo" style={{ color: 'red' }}>
     <h1 title="hello world">hello {h1Content}</h1>
+    <div>{'<h4>JSX Prevents Injection Attacks</h4>'}</div>
+    <div dangerouslySetInnerHTML="<h4>but you can use dangerouslySetInnerHTML</h4>" />
+    <div
+      dangerouslySetInnerHTML={() => '<h4>inner HTML from function</h4>'}
+    />
     <hr />
     <ol>
-      {list.map(function(item) {
-        return <li>{item}</li>;
+      {list.map(function(item, idx) {
+        return <li data-index={idx}>{item}</li>;
       })}
     </ol>
     <hr />
-    <button ref={_ => void (btn = _)} onClick={e => void alert('from jsx')} />
+    <button
+      ref={(_: HTMLElement): void => void (btn = _)}
+      onClick={(e: Event): void => void alert('from tsx')}
+    />
   </div>
 );
 btn.textContent = 'Click me';
 ```
 
-Then build:
+It also support Typescript(check the [demo][2]).
 
-```package.json
-  ...
-  "scripts": {
-    "build": "webpack"
-  },
-  ...
-```
+### NOTE
 
-```bash
-yarn build
-```
+Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners, property names are insensitive, both `onclick` and `onClick` are valid.
 
-Import the `bundle.js` in `index.html` and that's it!
-
-NOTE: Instead of `className` and `onClick` (etc.), jsx-dom-render use `class` to create class attribute and `onclick` (etc.) to bind event listeners.
-
-Currently creating inline style with JavaScript Object is **NOT** supported.
+Also, since there is no Virtual DOM and [Reconciliation][3] in jsx-dom-render, property [key][4] is unnecessary when creating lists.
 
 ## License
 
 [![](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/)
 
-[1]: https://github.com/oychao/jsx-dom-render/blob/master/index.js
+[1]: https://github.com/oychao/jsx-dom-render/blob/master/src/index.ts
 [2]: https://github.com/oychao/jsx-dom-render/tree/master/demo
+[3]: https://reactjs.org/docs/reconciliation.html
+[4]: https://reactjs.org/docs/reconciliation.html#keys
