@@ -25,19 +25,26 @@ const createElement = function(
       }
       if ('class' === propKey) {
         propValue.split(' ').forEach((cls: string) => ele.classList.add(cls));
-      } else if ('data-' === propKey.slice(0, 5)) {
-        ele.setAttribute(propKey, propValue);
       } else if ('style' === propKey) {
         if (typeof propValue !== 'object') {
           throw new TypeError('style attribute should be an object');
         }
         Object.keys(propValue).forEach((k: any) => (ele.style[k] = propValue[k]));
-      } else if ('dangerouslySetInnerHTML' === propKey) {
+      } else if ('dangerouslysetinnerhtml' === propKey) {
+        let htmlStr: string;
+        if(typeof propValue === 'function') {
+          htmlStr = propValue.call();
+        } else {
+          htmlStr = propValue;
+        }
+        ele.innerHTML = htmlStr;
       } else if (propKey in ele) {
         if (propKey.slice(0, 2) === 'on') {
           ele.addEventListener(propKey.slice(2), propValue);
           return;
         }
+        ele.setAttribute(propKey, propValue);
+      } else if ('data-' === propKey.slice(0, 5)) {
         ele.setAttribute(propKey, propValue);
       }
     });
