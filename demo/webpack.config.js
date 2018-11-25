@@ -44,8 +44,10 @@ const config = {
   },
   devtool: 'source-map',
   devServer: {
+    host: '0.0.0.0',
+    port: 8080,
     contentBase: './dist',
-    open: true
+    hot: true
   },
   externals: {
     // react: 'React',
