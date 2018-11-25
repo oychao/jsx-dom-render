@@ -1,6 +1,6 @@
-// import React from 'jsx-dom-render';
+import React from 'jsx-dom-render';
 // const React = require('../bin');
-import React from '../bin/index';
+// import React from '../bin/index';
 
 const h1Content: string = 'world';
 const list: Array<string> = ['Zhao', 'Qian', 'Sun', 'Li'];

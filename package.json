@@ -9,7 +9,11 @@
   },
   "license": "WTFPL",
   "repository": "https://github.com/oychao/jsx-dom-render",
-  "keywords": [],
+  "keywords": [
+    "jsx",
+    "dom",
+    "jsx-dom-render"
+  ],
   "description": "Render JSX to DOM tree",
   "files": [
     "LICENSE.md",
